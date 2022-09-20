@@ -1,0 +1,15 @@
+Projet : Navigation GPS
+
+À partir d'une carte de la France, l'objectif est de construire un GPS : à partir d'une position intiale, l'utilisateur souhaite se rendre à une ville. Toutefois, le principe consiste à choisir le trajet qui convient le mieux à l'utilisateur : ici cela sera le plus court chemin. Si le temps le permet, d'autres options seront considérées : le nombre de villes parcourues ou le trajet le moins cher (en affectant à chaque arête un prix)
+
+La France sera représenté ici sous forme de graphe / tableau contenu dans un fichier csv qui représentera la matrice d'adjacence (préalablement remplie). L'entièreté de la France ne sera pas représenté pour des contraintes de stockage, nous nous limiterons donc à quelques dizaines de villes.
+
+L'algorithme appliqué pour trouver le plus court chemin sera l'algorithme de Dijkstra.
+
+À chaque ville atteinte (dans notre graphe un sommet), il sera possible de choisir la prochaine destination. Si celle-ci ne correspond pas à celle indiquée par le GPS, le GPS devra recalculer le plus court chemin.
+
+
+
+Le tout devra être implémenté d'une interface graphique pour rendre l'outil plus simple d'utilisation.
+Le langage de programmation n'a pas encore été choisi mais sera du C ou du Python.
+
