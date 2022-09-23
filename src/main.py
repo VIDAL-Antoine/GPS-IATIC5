@@ -34,13 +34,7 @@ pos=nx.get_node_attributes(G,'pos')
 
 
 #Consutrctions des arêtes
-with open("towns_edges.txt") as f:
-    lines = f.read().strip().split("\n")
-edges = defaultdict(list)
-for line in lines:
-    elmt = line.split(" ")
-    edges[elmt[0]] = elmt[1:]
-
+df_towns_edges = pd.read_csv("towns_edges_2d_array.csv")
 
 
 
