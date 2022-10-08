@@ -65,7 +65,6 @@ class View(Frame):
         self.btn_start_path.pack(fill=X)
 
     def start_path(self):
-        controller.Controller.current_town = controller.Controller.start_town
         controller.Controller.neighbors_current_town = list(controller.Controller.G.neighbors(controller.Controller.current_town))
         View.frm_ui_choose_route.pack_forget()
         View.display_choose_next_town(self)
@@ -96,7 +95,3 @@ class View(Frame):
             messagebox.showinfo("Information", "Vous êtes arrivé.")
             View.frm_ui_moving.pack_forget()
             View.frm_ui_choose_route.pack(fill=Y, side=RIGHT, expand=True)
-            controller.Controller.start_town = controller.Controller.arrival_town
-            controller.Controller.neighbors_current_town = list(controller.Controller.G.neighbors(controller.Controller.start_town))
-            controller.Controller.arrival_town = controller.Controller.neighbors_current_town[0]
-

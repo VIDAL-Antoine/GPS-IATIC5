@@ -33,7 +33,7 @@ class Controller:
                 color_map[i] = "red"
             elif node == Controller.arrival_town: 
                 color_map[i] = "green"
-            elif node == Controller.current_town: 
+            elif node == Controller.current_town:
                 color_map[i] = "yellow"
             elif node in Controller.shortest_path:
                 color_map[i] = "blue"
@@ -54,5 +54,6 @@ class Controller:
         if(start == arrival):
             messagebox.showwarning("Attention", "Le départ et la destination sont identiques.")
         else:
+            Controller.current_town = start
             model.Model.get_shortest_path_dijkstra(model, start, arrival)
             Controller.draw_graph_France()
