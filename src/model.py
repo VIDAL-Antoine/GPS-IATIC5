@@ -22,9 +22,13 @@ class Model():
                 if value > 0:
                     controller.Controller.G.add_edge(rowIndex, columnIndex, weight=value)
 
-    def get_shortest_path_dijkstra(self, start, arrival):
+    def compute_shortest_path(self, start, arrival, type_path):
         controller.Controller.start_town = start
         controller.Controller.arrival_town = arrival
-        controller.Controller.shortest_path = nx.dijkstra_path(controller.Controller.G, start, arrival)
+        controller.Controller.shortest_path_type_value = type_path
+        if controller.Controller.shortest_path_type_value == controller.Controller.shortest_path_type_list[0]:
+            controller.Controller.shortest_path = nx.dijkstra_path(controller.Controller.G, start, arrival)
+        elif controller.Controller.shortest_path_type_value == controller.Controller.shortest_path_type_list[1]:
+            controller.Controller.shortest_path = nx.shortest_path(controller.Controller.G, start, arrival)
         controller.Controller.shortest_path_edges = [(controller.Controller.shortest_path[i],controller.Controller.shortest_path[i+1]) for i in range(len(controller.Controller.shortest_path)-1)]
 

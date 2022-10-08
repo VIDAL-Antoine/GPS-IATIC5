@@ -8,6 +8,7 @@ class App(Tk):
         super().__init__()
 
         self.title("GPS")
+        self.resizable(False, False)
         model = Model()
         view = View(self)
         view.grid(row=0, column=0, padx=10, pady=10)

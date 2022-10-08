@@ -18,6 +18,9 @@ class Controller:
     shortest_path_edges = []
     neighbors_current_town = []
 
+    shortest_path_type_list = ["Le plus court", "Le moins de villes"]
+    shortest_path_type_value = shortest_path_type_list[0]
+
     def __init__(self, model, view):
         self.model = model
         self.view = view
@@ -48,10 +51,10 @@ class Controller:
         view.View.update_image_France()
 
 
-    def shortest_path_weight(self, start, arrival):
+    def get_shortest_path(self, start, arrival, type_path):
         if(start == arrival):
             messagebox.showwarning("Attention", "Le départ et la destination sont identiques.")
         else:
             Controller.current_town = start
-            model.Model.get_shortest_path_dijkstra(model, start, arrival)
+            model.Model.compute_shortest_path(model, start, arrival, type_path)
             Controller.draw_graph_France()
