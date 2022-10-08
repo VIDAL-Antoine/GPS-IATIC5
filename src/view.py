@@ -29,7 +29,7 @@ class View(Frame):
         self.frm_graph = Frame(master=self)
         View.img_France = PIL.ImageTk.PhotoImage(PIL.Image.open("france_graphe.png"))
         View.lbl_France = Label(master=self.frm_graph, image=View.img_France)
-        View.lbl_best_path = Label(master=self.frm_graph, text="Chemin idéal : ")
+        View.lbl_best_path = Label(master=self.frm_graph, text="Chemin idéal : {}".format(controller.Controller.shortest_path))
 
         View.frm_ui_choose_route = Frame(master=self)
 
@@ -43,8 +43,8 @@ class View(Frame):
         self.cmb_town_arrival = Combobox(master=self.frm_town_arrival, values=controller.Controller.list_towns_text)
         self.cmb_town_arrival.set(controller.Controller.list_towns_text[-1])
 
-        self.btn_confirm = Button(self.frm_ui_choose_route,text="Obtenir la trajectoire",command=lambda:controller.Controller.shortest_path_weight(controller.Controller, self.cmb_town_start.get(), self.cmb_town_arrival.get()))
-        self.btn_start_path = Button(self.frm_ui_choose_route,text="Démarrer le parcours",command=lambda:View.start_path(self))
+        self.btn_confirm = Button(self.frm_ui_choose_route,text="Obtenir la trajectoire", command=lambda:controller.Controller.shortest_path_weight(controller.Controller, self.cmb_town_start.get(), self.cmb_town_arrival.get()))
+        self.btn_start_path = Button(self.frm_ui_choose_route,text="Démarrer le parcours", command=lambda:View.start_path(self))
 
         self.frm_graph.pack(fill=Y, side=LEFT, expand=True)
         self.frm_ui_choose_route.pack(fill=Y, side=RIGHT, expand=True)
@@ -65,9 +65,12 @@ class View(Frame):
         self.btn_start_path.pack(fill=X)
 
     def start_path(self):
-        controller.Controller.neighbors_current_town = list(controller.Controller.G.neighbors(controller.Controller.current_town))
-        View.frm_ui_choose_route.pack_forget()
-        View.display_choose_next_town(self)
+        if not controller.Controller.shortest_path:
+            messagebox.showerror("Aucun chemin défini", "Il n'y a pas de chemin optimal défini. Veuillez appuyer sur \"Obtenir la trajectoire\" pour définir un chemin à emprunter.")
+        else:
+            controller.Controller.neighbors_current_town = list(controller.Controller.G.neighbors(controller.Controller.current_town))
+            View.frm_ui_choose_route.pack_forget()
+            View.display_choose_next_town(self)
 
     def display_choose_next_town(self):
         View.frm_ui_moving = Frame(master=self)
@@ -93,5 +96,11 @@ class View(Frame):
 
         if(controller.Controller.current_town == controller.Controller.arrival_town):
             messagebox.showinfo("Information", "Vous êtes arrivé.")
+            controller.Controller.shortest_path.clear()
+            View.lbl_best_path.configure(text="Chemin idéal : {}".format(controller.Controller.shortest_path))
             View.frm_ui_moving.pack_forget()
             View.frm_ui_choose_route.pack(fill=Y, side=RIGHT, expand=True)
+
+        elif(controller.Controller.current_town not in controller.Controller.shortest_path):
+            messagebox.showwarning("Chemin optimal non pris", "Vous avez emprunté un chemin non optimal. Il est possible que vous vous soyez trompé de chemin. Nous allons déterminer un nouveau chemin optimal depuis votre position actuelle.")
+            controller.Controller.shortest_path_weight(controller.Controller, controller.Controller.current_town, controller.Controller.arrival_town)

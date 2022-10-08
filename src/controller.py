@@ -1,5 +1,3 @@
-from email import message
-from tkinter import messagebox
 import view
 import model
 
@@ -7,18 +5,18 @@ import matplotlib.pyplot as plt
 import networkx as nx
 
 from tkinter import *
-
+from tkinter import messagebox
 
 class Controller:
     G = nx.Graph()
     pos = None
-    list_towns_text = None
+    list_towns_text = []
     start_town = None
     arrival_town = None
     current_town = None
-    shortest_path = None
-    shortest_path_edges = None
-    neighbors_current_town = None
+    shortest_path = []
+    shortest_path_edges = []
+    neighbors_current_town = []
 
     def __init__(self, model, view):
         self.model = model
