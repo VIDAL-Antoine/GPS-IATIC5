@@ -1,3 +1,4 @@
+from tkinter import messagebox
 import PIL.ImageTk, PIL.Image
 from tkinter import *
 from tkinter.ttk import Combobox
@@ -19,6 +20,10 @@ class View(Frame):
 
     def set_controller(self, controller):
         self.controller = controller
+    
+    def update_image_France():
+        View.img_France = PIL.ImageTk.PhotoImage(PIL.Image.open("france_graphe.png"))
+        View.lbl_France.configure(image=View.img_France)
 
     def display_choose_route(self):
         self.frm_graph = Frame(master=self)
@@ -59,24 +64,39 @@ class View(Frame):
         self.btn_confirm.pack(fill=X)
         self.btn_start_path.pack(fill=X)
 
-    def update_image_France(self):
-        View.img_France = PIL.ImageTk.PhotoImage(PIL.Image.open("france_graphe.png"))
-        View.lbl_France.configure(image=View.img_France)
+    def start_path(self):
+        controller.Controller.current_town = controller.Controller.start_town
+        controller.Controller.neighbors_current_town = list(controller.Controller.G.neighbors(controller.Controller.current_town))
+        View.frm_ui_choose_route.pack_forget()
+        View.display_choose_next_town(self)
 
     def display_choose_next_town(self):
         View.frm_ui_moving = Frame(master=self)
         self.frm_town_destination = Frame(master=View.frm_ui_moving)
         self.lbl_town_destination = Label(master=self.frm_town_destination, text="Destination")
-        self.cmb_town_destination = Combobox(master=self.frm_town_destination, values=controller.Controller.list_towns_text)
-        self.btn_town_destination = Button(View.frm_ui_moving, text="Se déplacer", command=print("aa"))
+        self.cmb_town_destination = Combobox(master=self.frm_town_destination, values=controller.Controller.neighbors_current_town)
+        self.cmb_town_destination.set(controller.Controller.neighbors_current_town[0])
+        self.btn_town_destination = Button(View.frm_ui_moving, text="Se déplacer", command=lambda:View.move_next_town(self))
 
         self.frm_ui_moving.pack(fill=Y, side=RIGHT, expand=True)
         self.frm_town_destination.pack(fill=X, expand=True)
 
         self.lbl_town_destination.grid(row=0, column=0)
         self.cmb_town_destination.grid(row=0, column=1)
-        self.btn_town_destination.pack()
+        self.btn_town_destination.pack()     
 
-    def start_path(self):
-        View.frm_ui_choose_route.pack_forget()
-        View.display_choose_next_town(self)
+    def move_next_town(self):
+        controller.Controller.current_town = self.cmb_town_destination.get()
+        controller.Controller.neighbors_current_town = list(controller.Controller.G.neighbors(controller.Controller.current_town))
+        self.cmb_town_destination.configure(values=controller.Controller.neighbors_current_town)
+        self.cmb_town_destination.set(controller.Controller.neighbors_current_town[0])
+        controller.Controller.draw_graph_France()
+
+        if(controller.Controller.current_town == controller.Controller.arrival_town):
+            messagebox.showinfo("Information", "Vous êtes arrivé.")
+            View.frm_ui_moving.pack_forget()
+            View.frm_ui_choose_route.pack(fill=Y, side=RIGHT, expand=True)
+            controller.Controller.start_town = controller.Controller.arrival_town
+            controller.Controller.neighbors_current_town = list(controller.Controller.G.neighbors(controller.Controller.start_town))
+            controller.Controller.arrival_town = controller.Controller.neighbors_current_town[0]
+

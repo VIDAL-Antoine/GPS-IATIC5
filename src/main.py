@@ -21,6 +21,7 @@ if __name__ == '__main__':
     environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
     environ["QT_SCREEN_SCALE_FACTORS"] = "1"
     environ["QT_SCALE_FACTOR"] = "1"
+    print()
 
     app = App()
     app.mainloop()
