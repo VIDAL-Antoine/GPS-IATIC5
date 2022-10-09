@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import messagebox
+
 from controller import Controller
 from model import Model
 from view import View
@@ -24,4 +26,11 @@ if __name__ == '__main__':
     environ["QT_SCALE_FACTOR"] = "1"
 
     app = App()
+
+    def quitter():
+        if messagebox.askyesno("Quitter", "Voulez-vous quitter?"):
+            app.destroy()
+
+    app.protocol("WM_DELETE_WINDOW", quitter)
+
     app.mainloop()
