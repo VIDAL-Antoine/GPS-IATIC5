@@ -35,17 +35,17 @@ class View(Frame):
 
         self.frm_town_start = Frame(master=self.frm_ui_choose_route)
         self.lbl_town_start = Label(master=self.frm_town_start, text="Départ")
-        self.cmb_town_start = Combobox(master=self.frm_town_start, values=controller.Controller.list_towns_text)
+        self.cmb_town_start = Combobox(master=self.frm_town_start, state="readonly", values=controller.Controller.list_towns_text)
         self.cmb_town_start.set(controller.Controller.list_towns_text[0])
 
         self.frm_town_arrival = Frame(master=self.frm_ui_choose_route)
         self.lbl_town_arrival = Label(master=self.frm_town_arrival, text="Arrivée")
-        self.cmb_town_arrival = Combobox(master=self.frm_town_arrival, values=controller.Controller.list_towns_text)
+        self.cmb_town_arrival = Combobox(master=self.frm_town_arrival, state="readonly", values=controller.Controller.list_towns_text)
         self.cmb_town_arrival.set(controller.Controller.list_towns_text[-1])
 
         self.frm_shortest_path_type = Frame(master=self.frm_ui_choose_route)
         self.lbl_shortest_path_type = Label(master=self.frm_shortest_path_type, text="Type")
-        self.cmb_shortest_path_type = Combobox(master=self.frm_shortest_path_type, values=controller.Controller.shortest_path_type_list)
+        self.cmb_shortest_path_type = Combobox(master=self.frm_shortest_path_type, state="readonly", values=controller.Controller.shortest_path_type_list)
         self.cmb_shortest_path_type.set(controller.Controller.shortest_path_type_list[0])
 
         self.btn_confirm = Button(self.frm_ui_choose_route,text="Obtenir la trajectoire", command=lambda:controller.Controller.get_shortest_path(controller.Controller, self.cmb_town_start.get(), self.cmb_town_arrival.get(), self.cmb_shortest_path_type.get()))
@@ -85,7 +85,7 @@ class View(Frame):
         View.frm_ui_moving = Frame(master=self)
         self.frm_town_destination = Frame(master=View.frm_ui_moving)
         self.lbl_town_destination = Label(master=self.frm_town_destination, text="Destination")
-        self.cmb_town_destination = Combobox(master=self.frm_town_destination, values=controller.Controller.neighbors_current_town)
+        self.cmb_town_destination = Combobox(master=self.frm_town_destination,  state="readonly", values=controller.Controller.neighbors_current_town)
         self.cmb_town_destination.set(controller.Controller.neighbors_current_town[0])
         self.btn_town_destination = Button(View.frm_ui_moving, text="Se déplacer", command=lambda:View.move_next_town(self))
         self.btn_return_menu = Button(View.frm_ui_moving, text="Revenir au menu", command=lambda:View.return_menu(self))
