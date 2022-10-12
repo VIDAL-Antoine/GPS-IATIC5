@@ -110,7 +110,7 @@ class View(Frame):
         controller.Controller.draw_graph_France()
 
         if(controller.Controller.current_town == controller.Controller.arrival_town):
-            messagebox.showinfo("Information", "Vous êtes arrivé.")
+            messagebox.showinfo("Information", "Vous êtes arrivés.")
             controller.Controller.shortest_path.clear()
             View.lbl_best_path.configure(text="Chemin idéal : {}".format(controller.Controller.shortest_path))
             View.frm_ui_moving.pack_forget()
