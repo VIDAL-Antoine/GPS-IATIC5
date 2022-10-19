@@ -27,10 +27,17 @@ class View(Frame):
 
     def display_choose_route(self):
         self.frm_graph = Frame(master=self)
-        View.img_France = PIL.ImageTk.PhotoImage(PIL.Image.open("france_graphe.png"))
-        View.lbl_France = Label(master=self.frm_graph, image=View.img_France)
+        
         View.lbl_best_path = Label(master=self.frm_graph, text="Chemin idéal : {}".format(controller.Controller.shortest_path))
+        View.lbl_France = Label(master=self.frm_graph)
+        
+        #Créer un graphe vide s'il n'existe pas
+        try:
+            View.img_France = PIL.ImageTk.PhotoImage(PIL.Image.open("france_graphe.png"))
+        except FileNotFoundError:
+            controller.Controller.draw_graph_France()
 
+        View.lbl_France.configure(image=View.img_France)
         View.frm_ui_choose_route = Frame(master=self)
 
         self.frm_town_start = Frame(master=self.frm_ui_choose_route)
@@ -55,7 +62,7 @@ class View(Frame):
         self.frm_ui_choose_route.pack(fill=Y, side=RIGHT, expand=True)
 
         View.lbl_France.pack()
-        self.lbl_best_path.pack()
+        View.lbl_best_path.pack()
 
 
         self.frm_town_start.pack(fill=X, expand=True)
