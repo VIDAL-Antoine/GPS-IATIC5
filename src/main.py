@@ -41,7 +41,9 @@ if __name__ == '__main__':
     def quitter():
         if messagebox.askyesno("Quitter", "Voulez-vous quitter?"):
             app.destroy()
+            sys.exit()
 
     app.protocol("WM_DELETE_WINDOW", quitter)
 
     app.mainloop()
+
