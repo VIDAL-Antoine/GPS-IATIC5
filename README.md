@@ -1,7 +1,7 @@
 # Mini-GPS
 Projet individuel réalisé en IATIC5. 
 
-À partir d'une carte de la France, l'objectif est de construire un GPS : à partir d'une position intiale, l'utilisateur souhaite se rendre à une ville. Toutefois, le principe consiste à choisir le trajet qui convient le mieux à l'utilisateur : ici cela sera le plus court chemin. Si le temps le permet, d'autres options seront considérées : le nombre de villes parcourues ou le trajet le moins cher (en affectant à chaque arête un prix).
+À partir d'une carte de la France, l'objectif est de construire un GPS : à partir d'une position initiale, l'utilisateur souhaite se rendre à une ville. Toutefois, le principe consiste à choisir le trajet qui convient le mieux à l'utilisateur : ici cela sera le plus court chemin. Une autre option a été considérée : le nombre de villes parcourues.
 
 La France sera représenté ici sous forme de graphe / tableau contenu dans un fichier csv qui représentera la matrice d'adjacence (préalablement remplie). L'entièreté de la France ne sera pas représenté pour des contraintes de stockage, nous nous limiterons donc à quelques dizaines de villes.
 
