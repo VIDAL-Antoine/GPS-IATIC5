@@ -12,7 +12,7 @@ L'algorithme appliqué pour trouver le plus court chemin sera l'algorithme de Di
 
 ## Informations d'utilisation
 
-L'application utilise des fichiers externes, principalement une image et des fichiers csv. Les nom de ces fichiers ne peuvent pas être changés.
+L'application utilise des fichiers externes, principalement une image et des fichiers csv. Les noms de ces fichiers ne peuvent pas être changés.
 
 ### Pré-requis
 
