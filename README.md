@@ -1,44 +1,46 @@
 # Mini-GPS
-Projet individuel réalisé en IATIC5. 
 
-À partir d'une carte de la France, l'objectif est de construire un GPS : à partir d'une position initiale, l'utilisateur souhaite se rendre à une ville. Toutefois, le principe consiste à choisir le trajet qui convient le mieux à l'utilisateur : ici cela sera le plus court chemin. Une autre option a été considérée : le nombre de villes parcourues.
+Individual project carried out in IATIC5 (during my engineering degree). 
 
-La France sera représenté ici sous forme de graphe / tableau contenu dans un fichier csv qui représentera la matrice d'adjacence (préalablement remplie). L'entièreté de la France ne sera pas représenté pour des contraintes de stockage, nous nous limiterons donc à quelques dizaines de villes.
+Based on a map of France, the aim is to build a GPS: from an initial position, the user wants to get to a town. However, the principle is to choose the route that best suits the user: in this case, the shortest path. Another option was considered: the number of cities covered.
 
-L'algorithme appliqué pour trouver le plus court chemin sera l'algorithme de Dijkstra.
+France will be represented here as a graph/table contained in a csv file representing the adjacency matrix (filled in beforehand). The whole of France will not be represented for storage reasons, so we'll limit ourselves to a few dozen towns.
 
-À chaque ville atteinte (dans notre graphe un sommet), il sera possible de choisir la prochaine destination. Si celle-ci ne correspond pas à celle indiquée par le GPS, le GPS devra recalculer le plus court chemin.
+The algorithm applied to find the shortest path will be Dijkstra's algorithm.
+
+At each city reached (in our graph, a vertex), it will be possible to choose the next destination. If this does not correspond to the one indicated by the GPS, the GPS will have to recalculate the shortest path.
 
 
-## Informations d'utilisation
+## User information
 
-L'application utilise des fichiers externes, principalement une image et des fichiers csv. Les noms de ces fichiers ne peuvent pas être changés.
+The application uses external files, mainly an image and csv files. The names of these files cannot be changed.
 
-### Pré-requis
+### Requirements
 
-L'application a été testée sur Windows 10 et Linux (Ubuntu 22.04). 
-L'application fonctionnnant sous Python 3, il est nécessaire de l'avoir installé pour que celle-ci se lance.
+The application has been tested on Windows 10 and Linux (Ubuntu 22.04). 
+As the application runs under Python 3, it is necessary to have it installed for it to launch.
 
-Liste des librairies Python à installer pour utiliser l'application (avec la commande permettant l'installation):
+#### Dependencies
+
 - tkinter : `pip3 install tk`
 - pandas : `pip3 install pandas`
 - Networkx : `pip3 install networkx`
-- Matplotlib : `pip3 install matplotlib`
+- Matplotlib: `pip3 install matplotlib`
 - Pillow : `pip3 install Pillow`
 
-## Démarrage
+## Startup
 
-Pour démarrer l'application, il suffit simplement de se rendre dans le dossier `src` puis de lancer la commande `python main.py` ou `pythonw main.py` (pour Windows).
+To start the application, simply go to the `src` folder and run `python main.py` or `pythonw main.py` (for Windows).
 
-## Outils utilisés lors de la conception de l'application
-- Visual Studio Code et VIM pour l'édition de texte
-- Microsoft Office Excel pour l'édition des fichiers csv
-- Git et Github pour le versioning et l'hébergement des fichiers
-- Paint pour l'édition des images permettant d'élaborer la carte de la France utilisée par l'application
-- Overleaf (et donc LaTeX) pour la rédaction des documents (rapport et soutenance)
+## Tools used to design the application
+- Visual Studio Code and VIM for text editing
+- Microsoft Office Excel for editing csv files
+- Git and Github for file versioning and hosting
+- Paint for editing images used to create the map of France used by the application
+- LaTeX (Overleaf) for writing documents (report and presentation).
 
-## Auteurs
+## Authors
+
 - VIDAL Antoine
-- MANOUSSAKIS George en tant que tuteur
-- PILARD Laurence en tant que référent
-
+- MANOUSSAKIS George as tutor
+- PILARD Laurence as referent
